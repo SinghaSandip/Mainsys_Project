@@ -1,0 +1,120 @@
+import React, { useState, useEffect } from 'react';
+import './LoginPage.css';
+import mainsysLogo from '../../assets/mainsys-login.png';
+import api from '../../utils/api.js';
+
+const LoginPage = ({ onLogin }) => {
+  const [loginMode, setLoginMode] = useState('user');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (loginMode === 'admin') {
+      setUsername('Infocom-Admin');
+    } else {
+      setUsername('Infocom-User');
+    }
+    setError('');
+    setPassword('');
+  }, [loginMode]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const response = await api.post('/login', {
+        username,
+        password,
+        loginMode,
+      });
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem('authToken', token);
+        console.log('Login successful, token stored.');
+        onLogin(token);
+      } else {
+        setError('Login failed: No token received.');
+      }
+    } catch (networkError) {
+      console.error('Login API call failed:', networkError);
+      const errorMessage = networkError.response?.data?.error || 'Invalid username or password.';
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="mainsys-login-container">
+      <div className="mainsys-login-left-panel">
+         <img src={mainsysLogo} alt="MAINSYS Logo" className="mainsys-login-logo"/>
+      </div>
+
+      <div className="mainsys-login-right-form">
+        <div className="mainsys-login-mode-toggle">
+          <span className={loginMode === 'user' ? 'active' : ''}>User</span>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={loginMode === 'admin'}
+              onChange={() => setLoginMode(prev => prev === 'user' ? 'admin' : 'user')}
+            />
+            <span className="slider round"></span>
+          </label>
+          <span className={loginMode === 'admin' ? 'active' : ''}>Admin</span>
+        </div>
+
+        <h2 className="mainsys-login-sub-heading">{loginMode === 'user' ? 'User Login' : 'Admin Login'}</h2>
+        <p className="mainsys-login-sub-description">Please enter your credentials to continue</p>
+
+        <form onSubmit={handleSubmit} className="mainsys-login-form">
+          <div className="mainsys-input-group">
+            <span className="mainsys-input-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            <input
+              type="text"
+              id="username"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              disabled={isLoading}
+              aria-describedby={error ? "error-message" : undefined}
+            />
+          </div>
+
+          <div className="mainsys-input-group">
+            <span className="mainsys-input-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </span>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              disabled={isLoading}
+              aria-describedby={error ? "error-message" : undefined}
+            />
+          </div>
+
+          {error && <p id="error-message" className="mainsys-login-error-message">{error}</p>}
+
+          <button type="submit" className="mainsys-login-submit-button" disabled={isLoading}>
+            {isLoading ? <div className="loading-spinner"></div> : 'Log In'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;

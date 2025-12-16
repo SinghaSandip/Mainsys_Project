@@ -1,0 +1,191 @@
+.edit-page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.edit-page-container {
+    background: #ffffff;
+    padding: var(--space-xl, 2rem);
+    border-radius: var(--radius-lg, 0.75rem);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    box-sizing: border-box;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px) scale(0.98);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+
+.edit-page-container h2 {
+    color: var(--mainsys-green-dark, #22543D);
+    margin-top: 0;
+    margin-bottom: var(--space-md, 1rem);
+    border-bottom: 2px solid var(--mainsys-green, #2D6A4F);
+    padding-bottom: var(--space-sm, 0.5rem);
+    font-size: var(--font-xl, 1.25rem);
+}
+
+.edit-page-container p {
+    margin-bottom: 1.5rem;
+    color: var(--mainsys-medium-gray);
+}
+
+.edit-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg, 1.5rem);
+    margin-bottom: var(--space-xl, 2rem);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--mainsys-dark-gray, #334155);
+    margin-bottom: var(--space-sm, 0.5rem);
+    font-size: var(--font-sm, 0.875rem);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--mainsys-medium-gray);
+    border-radius: var(--radius-sm, 0.375rem);
+    font-size: var(--font-base, 1rem);
+    background-color: var(--mainsys-light-gray);
+    transition: all 0.2s ease;
+    color: var(--mainsys-dark-gray);
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+   outline: none; 
+   background-color: #ffffff;
+   border-color: var(--mainsys-green, #2D6A4F); 
+   box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+.form-input:hover {
+  background-color: #E0F2F1;
+}
+
+textarea.form-input {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.yes-no-toggle {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.yes-no-toggle .btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn--toggle-yes,
+.btn--toggle-no {
+    background-color: var(--mainsys-white);
+    border: 1.5px solid var(--mainsys-border);
+    box-shadow: none;
+}
+.btn--toggle-yes { color: var(--mainsys-green-dark); }
+.btn--toggle-no { color: var(--mainsys-maroon); }
+
+.btn--toggle-yes.active {
+    background: var(--mainsys-green);
+    color: var(--mainsys-white);
+    border-color: var(--mainsys-green);
+}
+.btn--toggle-no.active {
+    background: var(--mainsys-maroon);
+    color: var(--mainsys-white);
+    border-color: var(--mainsys-maroon);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Changed to align buttons to the right */
+    align-items: center;
+    margin-top: var(--space-lg, 1.5rem);
+    padding-top: var(--space-lg, 1.5rem);
+    border-top: 1px solid var(--mainsys-border, #E2E8F0);
+    flex-wrap: nowrap;
+    gap: var(--space-md, 1rem);
+}
+
+.form-actions > .btn {
+    flex-shrink: 0;
+    min-width: 150px;
+    max-width: 180px;
+    width: auto;
+}
+
+@media (max-width: 480px) {
+    .edit-page-overlay {
+        padding: 0;
+        backdrop-filter: none;
+        background-color: var(--mainsys-white, #fff);
+        align-items: flex-start;
+    }
+    .edit-page-container {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        border-radius: 0;
+        box-shadow: none;
+        animation: none;
+        padding: 1.5rem 1rem;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+    .form-actions .action-buttons-group {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    .form-actions .action-buttons-group > .btn {
+        flex: 1 1 calc(50% - 0.25rem);
+        min-width: unset;
+        max-width: unset;
+        font-size: 0.8rem;
+        padding: 8px 6px;
+    }
+}

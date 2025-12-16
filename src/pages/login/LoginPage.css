@@ -1,0 +1,417 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.mainsys-login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--mainsys-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.mainsys-login-left-panel {
+  flex: 1;
+  background: linear-gradient(160deg, var(--mainsys-primary-brand-dark), var(--mainsys-error-color));
+  color: var(--mainsys-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.mainsys-login-logo {
+  height: 500px;
+  width: 500px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 1rem;
+}
+
+.mainsys-login-right-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 100%;
+}
+
+.mainsys-login-form {
+  width: 100%;
+  max-width: 380px;
+}
+
+.mainsys-input-group {
+  position: relative;
+  /* Adjusted margin-bottom to create space for the error message */
+  margin-bottom: 0.75rem; 
+}
+
+.mainsys-input-group input {
+  width: 100%;
+  height: 55px;
+  padding: 0 1rem 0 3.5rem;
+  border: 1px solid var(--mainsys-border);
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  background: var(--mainsys-light-bg);
+  color: var(--mainsys-dark-gray);
+  transition: all 0.2s ease;
+}
+
+.mainsys-input-group input:focus {
+  outline: none;
+  background-color: var(--mainsys-light-bg);
+}
+
+.mainsys-input-group input::placeholder {
+  color: var(--mainsys-medium-gray);
+  opacity: 0.8;
+}
+
+.mainsys-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  color: var(--mainsys-medium-gray);
+  pointer-events: none;
+  font-size: 1.2rem;
+}
+
+.mainsys-login-submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--mainsys-error-color);
+  color: var(--mainsys-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mainsys-login-submit-button:hover {
+  background-color: var(--mainsys-primary-brand-dark);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.mainsys-login-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: var(--mainsys-primary-brand);
+  box-shadow: none;
+}
+
+.mainsys-login-error-message {
+  color: var(--mainsys-error-color);
+  font-size: 0.95rem;
+  /* Changed negative margin-top to positive to push it down */
+  margin-top: 0.5rem;
+  /* Adjusted margin-bottom to control spacing to the button */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .mainsys-login-container {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .mainsys-login-left-panel {
+    padding: 2rem 1.5rem;
+    height: auto;
+    flex: none;
+  }
+
+  .mainsys-login-logo {
+    height: 200px;
+    margin-bottom: 0.5rem;
+  }
+
+  .mainsys-login-main-heading {
+    font-size: 2rem;
+  }
+
+  .mainsys-login-description {
+    font-size: 1rem;
+    max-width: 80%;
+  }
+
+  .mainsys-login-right-form {
+    padding: 2.5rem 1.5rem;
+    flex: 1;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mainsys-login-sub-heading {
+    font-size: 1.8rem;
+  }
+
+  .mainsys-login-sub-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mainsys-login-form {
+    max-width: 350px;
+    width: 100%;
+  }
+
+  .mainsys-input-group input {
+    height: 50px;
+    font-size: 1rem;
+    padding: 0 1rem 0 3rem;
+  }
+
+  .mainsys-input-icon {
+    left: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .mainsys-login-submit-button {
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainsys-login-left-panel {
+    height: auto;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .mainsys-login-logo {
+    height: 200px;
+    margin-bottom: 0.5rem;
+  }
+
+  .mainsys-login-main-heading {
+    font-size: 1.6rem;
+  }
+
+  .mainsys-login-description {
+    font-size: 0.85rem;
+    max-width: 90%;
+  }
+
+  .mainsys-login-right-form {
+    padding: 1.5rem 1rem;
+  }
+
+  .mainsys-login-sub-heading {
+    font-size: 1.5rem;
+  }
+
+  .mainsys-login-sub-description {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .mainsys-login-form {
+    max-width: 300px;
+  }
+
+  .mainsys-input-group {
+    /* Adjusted margin-bottom for smaller screens */
+    margin-bottom: 0.4rem;
+  }
+
+  .mainsys-input-group input {
+    height: 45px;
+    font-size: 0.95rem;
+    padding: 0 0.8rem 0 2.5rem;
+  }
+
+  .mainsys-input-icon {
+    left: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .mainsys-login-submit-button {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .mainsys-login-error-message {
+    font-size: 0.8rem;
+    /* Added margin-top for smaller screens */
+    margin-top: 0.4rem;
+    /* Adjusted margin-bottom for smaller screens */
+    margin-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainsys-login-left-panel {
+    height: auto;
+    padding: 1rem 0.8rem;
+  }
+
+  .mainsys-login-logo {
+    height: 280px;
+  }
+
+  .mainsys-login-main-heading {
+    font-size: 1.3rem;
+  }
+
+  .mainsys-login-description {
+    font-size: 0.75rem;
+    max-width: 95%;
+  }
+
+  .mainsys-login-right-form {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .mainsys-login-sub-heading {
+    font-size: 1.2rem;
+  }
+
+  .mainsys-login-sub-description {
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .mainsys-login-form {
+    max-width: 280px;
+  }
+
+  .mainsys-input-group {
+    /* Adjusted margin-bottom for very small screens */
+    margin-bottom: 0.3rem;
+  }
+
+  .mainsys-input-group input {
+    height: 38px;
+    font-size: 0.85rem;
+    padding: 0 0.6rem 0 2rem;
+  }
+
+  .mainsys-input-icon {
+    left: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .mainsys-login-submit-button {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .mainsys-login-error-message {
+    font-size: 0.75rem;
+    /* Added margin-top for very small screens */
+    margin-top: 0.3rem;
+    /* Adjusted margin-bottom for very small screens */
+    margin-bottom: 0.5rem;
+  }
+}
+
+.mainsys-login-mode-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.mainsys-login-mode-toggle span {
+  font-size: 1rem;
+  color: #888;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.mainsys-login-mode-toggle span.active {
+  color: #9B1C1C;
+  font-weight: 700;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--mainsys-error-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--mainsys-error-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

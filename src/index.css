@@ -1,0 +1,205 @@
+:root {
+  --mainsys-maroon: #9B1C1C;
+  --mainsys-primary-brand: #7F2A2A;
+  --mainsys-primary-brand-dark: #632121;
+  --mainsys-error-color: #9B1C1C;
+  --mainsys-green: #3E836A;
+  --mainsys-green-dark: #22543D;
+  --mainsys-orange-rust: #B54828;
+  --mainsys-yellow: #FFD43B;
+  --mainsys-info: #3B82F6;
+  --mainsys-white: #F9F9F6;
+  --mainsys-white-login: #F0F0E0;
+  --mainsys-black: #1A1A1A;
+  --mainsys-light-gray: #F8FAFC;
+  --mainsys-medium-gray: #64748B;
+  --mainsys-dark-gray: #334155;
+  --mainsys-border: #E2E8F0;
+  --mainsys-border-login: #d0d5db;
+  --mainsys-light-bg: #E8F0FE;
+  --mainsys-hover-bg: #F5EBEB;
+  --mainsys-shadow: rgba(0, 0, 0, 0.1);
+  --mainsys-shadow-hover: rgba(0, 0, 0, 0.15);
+  --status-success-bg: #d1fae5;
+  --status-success-text: #065f46;
+  --status-success-border: #6ee7b7;
+  --status-error-bg: #fee2e2;
+  --status-error-text: #991b1b;
+  --status-error-border: #fca5a5;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-lg-login: 12px;
+  --radius-md-login: 8px;
+  --radius-sm-login: 5px;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 2rem;
+
+  --font-primary: 'Segoe UI', 'Inter', sans-serif;
+
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+}
+
+body {
+    font-family: 'Segoe UI', 'Inter', sans-serif;
+    background: var(--mainsys-light-gray);
+    margin: 0;
+}
+
+/* --- REUSABLE SPINNER --- */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  border-top-color: #fff; /* This color works well on dark/colored buttons */
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* --- END OF SPINNER CODE --- */
+
+
+.btn {
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    border: none;
+    color: var(--mainsys-white);
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px var(--mainsys-shadow);
+    min-width: 100px;
+    height: 38px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--mainsys-shadow-hover);
+}
+
+.btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px var(--mainsys-shadow);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn--green {
+    background: linear-gradient(135deg, var(--mainsys-green), var(--mainsys-green-dark));
+}
+
+.btn--blue {
+    background: linear-gradient(135deg, var(--mainsys-info), #2a6cb5);
+}
+
+.btn--danger {
+    background: linear-gradient(135deg, var(--mainsys-error-color), var(--mainsys-maroon));
+}
+
+.btn--outline {
+    background: transparent;
+    color: var(--mainsys-error-color);
+    border: 2px solid var(--mainsys-error-color);
+}
+.btn--outline:hover {
+    color: var(--mainsys-white);
+    background-color: var(--mainsys-error-color);
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--mainsys-medium-gray);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.close-button:hover {
+    background: var(--mainsys-light-gray);
+    color: #991b1b;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.close-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+.action-buttons-group {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md, 1rem);
+    margin-left: auto;
+}
+
+.action-buttons-group > .btn--green {
+    flex: 2;
+    min-width: 0;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    padding: 10px 8px;
+    max-width: unset;
+}
+
+.action-buttons-group > .btn--outline {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    padding: 10px 8px;
+    max-width: unset;
+}
+
+
+@media (max-width: 480px) {
+    .action-buttons-group {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .action-buttons-group > .btn--green,
+    .action-buttons-group > .btn--outline {
+        flex: 1 1 calc(50% - 0.25rem);
+        width: calc(50% - 0.25rem);
+        flex: none;
+        min-width: unset;
+        max-width: unset;
+        font-size: 0.8rem;
+        padding: 8px 6px;
+    }
+}

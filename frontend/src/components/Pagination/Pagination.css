@@ -1,0 +1,117 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px var(--mainsys-shadow);
+  min-width: 36px;
+  min-height: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:disabled {
+  background: var(--mainsys-medium-gray);
+  color: var(--mainsys-white);
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination button:active {
+  transform: translateY(0) scale(0.95);
+  transition-duration: 0.1s;
+}
+
+.PButtons {
+  background: linear-gradient(135deg, #ffffff, var(--mainsys-white));
+  color: var(--mainsys-dark-gray);
+  border-color: var(--mainsys-border);
+}
+
+.PButtons:hover {
+  background: linear-gradient(135deg,#E0F2F1, var(--mainsys-light-gray));
+  border-color: var(--mainsys-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--mainsys-shadow-hover);
+}
+
+.PNpage,
+.active-page {
+  background: linear-gradient(135deg, var(--mainsys-maroon), var(--mainsys-orange-rust));
+  color: var(--mainsys-white);
+  font-weight: 700;
+}
+
+.PNpage:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--mainsys-shadow-hover);
+}
+
+.active-page {
+  box-shadow: 0 0 0 3px var(--mainsys-yellow);
+  transform: scale(1.05);
+}
+
+.ellipsis {
+  padding: 4px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mainsys-medium-gray);
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    margin: 12px 0;
+    gap: 6px;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 13px;
+    min-width: 32px;
+    min-height: 32px;
+    height: 32px;
+  }
+
+  .ellipsis {
+    padding: 3px 5px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    margin: 10px 0;
+    gap: 4px;
+  }
+
+  .pagination button {
+    padding: 5px 8px;
+    font-size: 12px;
+    min-width: 28px;
+    min-height: 28px;
+    height: 28px;
+  }
+
+  .ellipsis {
+    padding: 2px 4px;
+    font-size: 12px;
+  }
+}
